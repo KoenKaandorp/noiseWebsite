@@ -186,3 +186,23 @@ function toggleTone() {
 
 // Initial idle draw
 drawIdleWave();
+
+
+function scaleDevice() {
+  const device = document.querySelector('.device');
+  const vw = window.innerWidth;
+  const vh = window.innerHeight;
+
+  const rect = device.getBoundingClientRect();
+
+  const scaleX = vw / rect.width;
+  const scaleY = vh / rect.height;
+
+  const scale = Math.min(scaleX, scaleY, 1); // never upscale
+
+  device.style.transform = `scale(${scale})`;
+  device.style.transformOrigin = 'center center';
+}
+
+window.addEventListener('resize', scaleDevice);
+window.addEventListener('load', scaleDevice);

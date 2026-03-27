@@ -32,12 +32,21 @@ body {
 
   display: flex;
   justify-content: center;
-  align-items: flex-start; /* ✅ was center */
 
   min-height: 100vh;
-  overflow-y: auto;        /* ✅ allow vertical scroll */
   overflow-x: hidden;
-  padding: 40px 0;         /* ✅ breathing room top/bottom */
+  padding: 40px 0;        
+}
+
+.viewport {
+  width: 100vw;
+  height: 100vh;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  overflow: hidden;
 }
 
 /* CRT Scanlines overlay */
