@@ -45,7 +45,7 @@ updateFreqDisplay(sliderToFreq(parseInt(freqSlider.value)));
 // Update frequency
 freqSlider.oninput = () => {
   const hz = sliderToFreq(parseInt(freqSlider.value));
-  updateFreqDisplay(hz);
+  freqValue.textContent = hz;
   if (oscillator) {
     oscillator.frequency.setValueAtTime(hz, audioCtx.currentTime);
   }
