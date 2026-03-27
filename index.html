@@ -9,16 +9,17 @@
 
 <h2>Tone Generator</h2>
 
-<button onclick="toggleTone()">Play / Stop</button>
+<button id="playBtn" onclick="toggleTone()">Play</button>
 
 <div class="control">
     <p>Frequency: <span id="freqValue">20000</span> Hz</p>
     <input type="range" id="freqSlider" min="20" max="22000" value="20000">
 </div>
 
-<div class="control">
-    <p>Volume: <span id="volValue">0.5</span></p>
+<div class="volume-control">
+    <span class="volume-icon">🔊</span>
     <input type="range" id="volSlider" min="0" max="1" step="0.01" value="0.5">
+    <span id="volValue">0.5</span>
 </div>
 
 <script src="scripts.js"></script>

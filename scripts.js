@@ -24,8 +24,12 @@ volSlider.oninput = () => {
     }
 };
 
-// Play / Stop
+// Make function accessible to button
+window.toggleTone = toggleTone;
+
 function toggleTone() {
+    const btn = document.getElementById("playBtn");
+
     if (!isPlaying) {
         audioCtx = new (window.AudioContext || window.webkitAudioContext)();
 
@@ -40,13 +44,17 @@ function toggleTone() {
         gainNode.connect(audioCtx.destination);
 
         oscillator.start();
+
         isPlaying = true;
+        btn.textContent = "Stop";
+        btn.classList.add("active");
+
     } else {
         oscillator.stop();
         audioCtx.close();
+
         isPlaying = false;
+        btn.textContent = "Play";
+        btn.classList.remove("active");
     }
 }
-
-// Make function accessible to button
-window.toggleTone = toggleTone;
