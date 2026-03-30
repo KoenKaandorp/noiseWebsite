@@ -110,7 +110,7 @@ function drawOscilloscope() {
 
   for (let i = 0; i < bufferLength; i++) {
     const x = (i / bufferLength) * W;
-const y = (1 - (dataArray[i] + 1) / 2) * H;
+    const y = (1 - (dataArray[i] + 1) / 2) * H;
     i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
   }
   ctx.stroke();
@@ -124,7 +124,7 @@ const y = (1 - (dataArray[i] + 1) / 2) * H;
 
   for (let i = 0; i < bufferLength; i++) {
     const x = (i / bufferLength) * W;
-const y = (1 - (dataArray[i] + 1) / 2) * H;
+    const y = (1 - (dataArray[i] + 1) / 2) * H;
     i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
   }
   ctx.stroke();

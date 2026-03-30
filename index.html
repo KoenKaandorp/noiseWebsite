@@ -1,124 +1,130 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Tone Generator</title>
-<link rel="icon" type="image/svg+xml" href="favicon.svg">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Exo+2:wght@300;400;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tone Generator</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Exo+2:wght@300;400;600&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
-<div class="scanlines"></div>
-<div class="vignette"></div>
-<div class="viewport">
-<main class="device">
-  <header class="device-header">
-    <div class="brand">
-      <span class="brand-icon">◈</span>
-      <span class="brand-name">FREQUENCY GENERATOR</span>
-      <span class="brand-model">FG-2.1</span>
-    </div>
-    <div class="status-row">
-      <span class="status-dot" id="statusDot"></span>
-      <span class="status-label" id="statusLabel">STANDBY</span>
-    </div>
-  </header>
-
-  <div class="screen">
-    <canvas id="waveCanvas" width="560" height="120"></canvas>
-    <div class="screen-overlay"></div>
-    <div class="freq-display">
-      <span id="freqBig">20000</span>
-      <span class="freq-unit">Hz</span>
-    </div>
-  </div>
-
-  <div class="controls">
-
-    <div class="control-group">
-      <label class="ctrl-label">FREQUENCY</label>
-      <div class="slider-row">
-        <span class="tick-label">20</span>
-<div class="slider-track-wrap">
-  <input 
-    type="range" 
-    id="freqSlider" 
-    min="0" 
-    max="1000" 
-    step="1" 
-    value="1000">
-</div>
-        <span class="tick-label">22k</span>
-      </div>
-      <div class="readout">
-        <span class="readout-value" id="freqValue">20000</span>
-        <span class="readout-unit">Hz</span>
-      </div>
-    </div>
-
-    <div class="control-group">
-      <label class="ctrl-label">AMPLITUDE</label>
-      <div class="slider-row">
-        <span class="tick-label">0</span>
-        <div class="slider-track-wrap">
-          <input type="range" id="volSlider" min="0" max="1" step="0.01" value="0.5">
+  <div class="scanlines"></div>
+  <div class="vignette"></div>
+  <div class="viewport">
+    <main class="device">
+      <header class="device-header">
+        <div class="brand">
+          <span class="brand-icon">◈</span>
+          <span class="brand-name">FREQUENCY GENERATOR</span>
+          <span class="brand-model">FG-2.1</span>
         </div>
-        <span class="tick-label">1</span>
-      </div>
-      <div class="readout">
-        <span class="readout-value" id="volValue">0.50</span>
-        <span class="readout-unit">AMP</span>
-      </div>
-    </div>
+        <div class="status-row">
+          <span class="status-dot" id="statusDot"></span>
+          <span class="status-label" id="statusLabel">STANDBY</span>
+        </div>
+      </header>
 
-    <div class="control-group waveform-group">
-      <label class="ctrl-label">WAVEFORM</label>
-      <div class="wave-buttons">
-        <button class="wave-btn active" data-wave="sine">
-          <svg viewBox="0 0 40 20" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 10 C8 2, 12 2, 20 10 C28 18, 32 18, 38 10"/></svg>
-          <span>SINE</span>
+      <div class="screen">
+        <canvas id="waveCanvas" width="560" height="120"></canvas>
+        <div class="screen-overlay"></div>
+        <div class="freq-display">
+          <span id="freqBig">20000</span>
+          <span class="freq-unit">Hz</span>
+        </div>
+      </div>
+
+      <div class="controls">
+
+        <div class="control-group">
+          <label class="ctrl-label">FREQUENCY</label>
+          <div class="slider-row">
+            <span class="tick-label">20</span>
+            <div class="slider-track-wrap">
+              <input type="range" id="freqSlider" min="0" max="1000" step="1" value="1000">
+            </div>
+            <span class="tick-label">22k</span>
+          </div>
+          <div class="readout">
+            <span class="readout-value" id="freqValue">20000</span>
+            <span class="readout-unit">Hz</span>
+          </div>
+        </div>
+
+        <div class="control-group">
+          <label class="ctrl-label">AMPLITUDE</label>
+          <div class="slider-row">
+            <span class="tick-label">0</span>
+            <div class="slider-track-wrap">
+              <input type="range" id="volSlider" min="0" max="1" step="0.01" value="0.5">
+            </div>
+            <span class="tick-label">1</span>
+          </div>
+          <div class="readout">
+            <span class="readout-value" id="volValue">0.50</span>
+            <span class="readout-unit">AMP</span>
+          </div>
+        </div>
+
+        <div class="control-group waveform-group">
+          <label class="ctrl-label">WAVEFORM</label>
+          <div class="wave-buttons">
+            <button class="wave-btn active" data-wave="sine">
+              <svg viewBox="0 0 40 20" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M2 10 C8 2, 12 2, 20 10 C28 18, 32 18, 38 10" />
+              </svg>
+              <span>SINE</span>
+            </button>
+            <button class="wave-btn" data-wave="square">
+              <svg viewBox="0 0 40 20" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M2 14 L2 6 L20 6 L20 14 L38 14 L38 6" />
+              </svg>
+              <span>SQR</span>
+            </button>
+            <button class="wave-btn" data-wave="sawtooth">
+              <svg viewBox="0 0 40 20" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M2 14 L20 6 L20 14 L38 6" />
+              </svg>
+              <span>SAW</span>
+            </button>
+            <button class="wave-btn" data-wave="triangle">
+              <svg viewBox="0 0 40 20" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M2 14 L11 6 L20 14 L29 6 L38 14" />
+              </svg>
+              <span>TRI</span>
+            </button>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="play-section">
+        <button id="playBtn" onclick="toggleTone()">
+          <span class="play-icon" id="playIcon">▶</span>
+          <span id="playLabel">PLAY</span>
         </button>
-        <button class="wave-btn" data-wave="square">
-          <svg viewBox="0 0 40 20" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 14 L2 6 L20 6 L20 14 L38 14 L38 6"/></svg>
-          <span>SQR</span>
-        </button>
-        <button class="wave-btn" data-wave="sawtooth">
-          <svg viewBox="0 0 40 20" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 14 L20 6 L20 14 L38 6"/></svg>
-          <span>SAW</span>
-        </button>
-        <button class="wave-btn" data-wave="triangle">
-          <svg viewBox="0 0 40 20" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 14 L11 6 L20 14 L29 6 L38 14"/></svg>
-          <span>TRI</span>
+        <button id="vizBtn" onclick="toggleViz()">
+          <span>◈ VIZ</span>
         </button>
       </div>
-    </div>
 
+      <footer class="device-footer">
+        <a href="https://koenkaandorp.nl" target="_blank" rel="noopener" class="site-link">
+          <span class="site-link-icon">⬡</span>
+          <span>Made by Koen Kaandorp</span>
+        </a>
+      </footer>
+
+    </main>
   </div>
 
-<div class="play-section">
-  <button id="playBtn" onclick="toggleTone()">
-    <span class="play-icon" id="playIcon">▶</span>
-    <span id="playLabel">PLAY</span>
-  </button>
-  <button id="vizBtn" onclick="toggleViz()">
-    <span>◈ VIZ</span>
-  </button>
-</div>
-
-  <footer class="device-footer">
-    <a href="https://koenkaandorp.nl" target="_blank" rel="noopener" class="site-link">
-      <span class="site-link-icon">⬡</span>
-      <span>Made by Koen Kaandorp</span>
-    </a>
-  </footer>
-
-</main>
-</div>
-
-<script src="scripts.js"></script>
+  <script src="scripts.js"></script>
 </body>
+
 </html>
