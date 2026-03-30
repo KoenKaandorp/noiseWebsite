@@ -108,7 +108,7 @@ function drawOscilloscope() {
 
   for (let i = 0; i < bufferLength; i++) {
     const x = (i / bufferLength) * W;
-    const y = (1 - (dataArray[i] * parseFloat(volSlider.value) + 1) / 2) * H;
+const y = (1 - (dataArray[i] + 1) / 2) * H;
     i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
   }
   ctx.stroke();
@@ -122,7 +122,7 @@ function drawOscilloscope() {
 
   for (let i = 0; i < bufferLength; i++) {
     const x = (i / bufferLength) * W;
-    const y = (1 - (dataArray[i] * parseFloat(volSlider.value) + 1) / 2) * H;
+const y = (1 - (dataArray[i] + 1) / 2) * H;
     i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
   }
   ctx.stroke();
@@ -193,15 +193,15 @@ function scaleDevice() {
   const vw = window.innerWidth;
   const vh = window.innerHeight;
 
-  const rect = device.getBoundingClientRect();
+  const naturalW = 600;
+  const naturalH = device.scrollHeight; // actual content height
 
-  const scaleX = vw / rect.width;
-  const scaleY = vh / rect.height;
+  const scaleX = vw / naturalW;
+  const scaleY = vh / naturalH;
 
-  const scale = Math.min(scaleX, scaleY, 1); // never upscale
-
+  const scale = Math.min(scaleX, scaleY, 1);
   device.style.transform = `scale(${scale})`;
-  device.style.transformOrigin = 'center center';
+  device.style.transformOrigin = 'top center';
 }
 
 window.addEventListener('resize', scaleDevice);
