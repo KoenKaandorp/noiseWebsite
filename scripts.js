@@ -5,6 +5,8 @@ let analyser;
 let animFrameId;
 let isPlaying = false;
 let currentWave = 'sine';
+let dataArray;
+let vizEnabled = true;
 
 const freqSlider = document.getElementById("freqSlider");
 const volSlider = document.getElementById("volSlider");
@@ -91,11 +93,11 @@ function drawIdleWave() {
 
 // Live oscilloscope
 function drawOscilloscope() {
-  animFrameId = requestAnimationFrame(drawOscilloscope);
+  if (vizEnabled) animFrameId = requestAnimationFrame(drawOscilloscope);
 
   const W = canvas.width, H = canvas.height;
   const bufferLength = analyser.frequencyBinCount;
-  const dataArray = new Float32Array(bufferLength);
+  //const dataArray = new Float32Array(bufferLength);
   analyser.getFloatTimeDomainData(dataArray);
 
   ctx.clearRect(0, 0, W, H);
@@ -145,6 +147,7 @@ function toggleTone() {
     gainNode = audioCtx.createGain();
     analyser = audioCtx.createAnalyser();
     analyser.fftSize = 1024;
+    dataArray = new Float32Array(analyser.frequencyBinCount);
 
     oscillator.type = currentWave;
     oscillator.frequency.setValueAtTime(sliderToFreq(parseInt(freqSlider.value)), audioCtx.currentTime);
@@ -165,7 +168,7 @@ function toggleTone() {
     statusLabel.classList.add('active');
     statusLabel.textContent = 'ACTIVE';
 
-    drawOscilloscope();
+    if (vizEnabled) drawOscilloscope();
 
   } else {
     cancelAnimationFrame(animFrameId);
@@ -206,3 +209,17 @@ function scaleDevice() {
 
 window.addEventListener('resize', scaleDevice);
 window.addEventListener('load', scaleDevice);
+
+function toggleViz() {
+  const btn = document.getElementById('vizBtn');
+  vizEnabled = !vizEnabled;
+
+  if (!vizEnabled) {
+    cancelAnimationFrame(animFrameId);
+    btn.classList.add('disabled');
+    drawIdleWave();
+  } else {
+    btn.classList.remove('disabled');
+    if (isPlaying) drawOscilloscope();
+  }
+}
