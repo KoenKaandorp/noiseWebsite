@@ -199,7 +199,7 @@ function scaleDevice() {
   const rect = device.getBoundingClientRect();
   const scaleX = vw / rect.width;
   const scaleY = vh / rect.height;
-  const scale = Math.min(scaleX, scaleY, 0.95); // 0.95 gives a little breathing room
+  const scale = Math.min(scaleX, scaleY, 0.85); // 0.95 gives a little breathing room
   device.style.transform = `scale(${scale})`;
   device.style.transformOrigin = 'center center';
 }
