@@ -193,18 +193,15 @@ drawIdleWave();
 
 function scaleDevice() {
   const device = document.querySelector('.device');
+  device.style.transform = 'none'; // reset before measuring
   const vw = window.innerWidth;
   const vh = window.innerHeight;
-
-  const naturalW = 600;
-  const naturalH = device.scrollHeight; // actual content height
-
-  const scaleX = vw / naturalW;
-  const scaleY = vh / naturalH;
-
-  const scale = Math.min(scaleX, scaleY, 1);
+  const rect = device.getBoundingClientRect();
+  const scaleX = vw / rect.width;
+  const scaleY = vh / rect.height;
+  const scale = Math.min(scaleX, scaleY, 0.95); // 0.95 gives a little breathing room
   device.style.transform = `scale(${scale})`;
-  device.style.transformOrigin = 'top center';
+  device.style.transformOrigin = 'center center';
 }
 
 window.addEventListener('resize', scaleDevice);
